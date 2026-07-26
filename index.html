@@ -51,17 +51,17 @@
 
         .category-title {
             font-size: 1.8rem;
-            margin: 50px 0 20px;
+            margin: 50px 0 25px;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--accent-color);
             display: inline-block;
         }
 
+        /* UNIFORMNI GRID ZA JEDNAK IZGLED KARTICA */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
-            align-items: start;
         }
 
         .card {
@@ -70,6 +70,8 @@
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
@@ -77,21 +79,35 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        .card img {
+        /* FIKSIRAN OKVIR ZA SLIKE DA SVE KARTICE BUDU RAVNE */
+        .img-container {
             width: 100%;
-            height: auto;
-            display: block;
-            cursor: pointer;
-            transition: opacity 0.2s ease;
+            height: 280px;
+            background-color: #121215;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
         }
 
-        .card img:hover {
-            opacity: 0.9;
+        .img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Slike se ne seku, a kontejner ostaje isti! */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .img-container img {
+            transform: scale(1.03);
         }
 
         .card-content {
             padding: 20px;
             border-top: 1px solid var(--border-color);
+            margin-top: auto; /* Dusi tekst na dno ako ima prostora */
+            background-color: var(--card-bg);
         }
 
         .card-content h3 {
@@ -188,14 +204,18 @@
     <h2 class="category-title">3D Modeling & Visualization</h2>
     <div class="grid">
         <div class="card">
-            <img src="images/f1.jpg" alt="Scuderia Ferrari F1" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/f1.jpg" alt="Scuderia Ferrari F1" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Scuderia Ferrari F1</h3>
                 <p>High-Poly 3D Modeling & Hard Surface Render u Blenderu.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/rolex.jpg" alt="Rolex Day-Date" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/rolex.jpg" alt="Rolex Day-Date" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Rolex Day-Date Everose</h3>
                 <p>3D Product Design & Photorealistic Visualization.</p>
@@ -207,35 +227,45 @@
     <h2 class="category-title">Vector Graphics & Branding</h2>
     <div class="grid">
         <div class="card">
-            <img src="images/tatko.png" alt="Tatko Opremović" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/tatko.png" alt="Tatko Opremović" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Tatko Opremović</h3>
                 <p>Tattoo Equipment Custom Logotype.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/blackbull.png" alt="Black Bull Pub" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/blackbull.png" alt="Black Bull Pub" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Black Bull Pub</h3>
                 <p>Craft Beer & Pub Branding Illustration.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/vino.png" alt="Zlatni Grozd" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/vino.png" alt="Zlatni Grozd" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Zlatni Grozd</h3>
                 <p>Traditional Wine Label & Packaging Design.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/peacolor.png" alt="Peacolor" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/peacolor.png" alt="Peacolor" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Peacolor</h3>
                 <p>Brand Identity & Custom Logo Design.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/laleclear.jpg" alt="LaleClear" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/laleclear.jpg" alt="LaleClear" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>LaleClear</h3>
                 <p>Auto Care Product Label & Visual Identity.</p>
@@ -247,28 +277,36 @@
     <h2 class="category-title">Graphic & Print Design</h2>
     <div class="grid">
         <div class="card">
-            <img src="images/plazma.jpg" alt="Plazma Cimet" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/plazma.jpg" alt="Plazma Cimet" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Plazma Cimet</h3>
                 <p>Print & Magazine Ad Campaign Mockup.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/jordan.jpg" alt="Air Jordan Retro" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/air jordan.jpg" alt="Air Jordan Retro" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Air Jordan "Chicago Legend"</h3>
                 <p>Halftone Retro Poster Design.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/sloukas.jpg" alt="Sloukas EuroLeague" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/sloukas.jpg" alt="Sloukas EuroLeague" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Kostas Sloukas</h3>
                 <p>EuroLeague Game Day Social Media Graphic.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/sony.jpg" alt="Sony Banners" onclick="openLightbox(this.src)">
+            <div class="img-container">
+                <img src="images/sony.jpg" alt="Sony Banners" onclick="openLightbox(this.src)">
+            </div>
             <div class="card-content">
                 <h3>Sony Photography Course</h3>
                 <p>Digital Web Display Banners Campaign.</p>
