@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrija — Portfolio</title>
+    <style>
+        /* CSS STILOVI — Jednostavno za izmenu boja i fontova */
+        :root {
+            --bg-color: #0f0f11;
+            --card-bg: #18181c;
+            --text-color: #f1f1f5;
+            --text-muted: #a0a0ab;
+            --accent-color: #e63946; /* Možeš promeniti u svoju omiljenu boju */
+            --border-color: #2a2a32;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            border: 1px solid var(--border-color);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / O MENI -->
+    <header>
+        <h1>Andrija</h1>
+        <p>3D Artist & Graphic Designer | Visual Arts & Product Design</p>
+    </header>
+
+    <!-- 3D MODELING SEKCIJA -->
+    <h2 class="category-title">3D Modeling & Visualization</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="images/f1.jpg" alt="Scuderia Ferrari F1">
+            <div class="card-content">
+                <h3>Scuderia Ferrari F1</h3>
+                <p>High-Poly 3D Modeling & Hard Surface Render u Blenderu.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/rolex.jpg" alt="Rolex Day-Date">
+            <div class="card-content">
+                <h3>Rolex Day-Date Everose</h3>
+                <p>3D Product Design & Photorealistic Visualization.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- VEKTORI I BRENDING -->
+    <h2 class="category-title">Vector Graphics & Branding</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="images/tatko.png" alt="Tatko Opremović">
+            <div class="card-content">
+                <h3>Tatko Opremović</h3>
+                <p>Tattoo Equipment Custom Logotype.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/blackbull.jpg" alt="Black Bull Pub">
+            <div class="card-content">
+                <h3>Black Bull Pub</h3>
+                <p>Craft Beer & Pub Branding Illustration.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/vino.jpg" alt="Zlatni Grozd">
+            <div class="card-content">
+                <h3>Zlatni Grozd</h3>
+                <p>Traditional Wine Label & Packaging Design.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/peacolor.png" alt="Peacolor">
+            <div class="card-content">
+                <h3>Peacolor</h3>
+                <p>Brand Identity & Custom Logo Design.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/laleclear.jpg" alt="LaleClear">
+            <div class="card-content">
+                <h3>LaleClear</h3>
+                <p>Auto Care Product Label & Visual Identity.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- GRAFIČKI DIZAJN -->
+    <h2 class="category-title">Graphic & Print Design</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="images/plazma.jpg" alt="Plazma Cimet">
+            <div class="card-content">
+                <h3>Plazma Cimet</h3>
+                <p>Print & Magazine Ad Campaign Mockup.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/jordan.jpg" alt="Air Jordan Retro">
+            <div class="card-content">
+                <h3>Air Jordan "Chicago Legend"</h3>
+                <p>Halftone Retro Poster Design.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/sloukas.jpg" alt="Sloukas EuroLeague">
+            <div class="card-content">
+                <h3>Kostas Sloukas</h3>
+                <p>EuroLeague Game Day Social Media Graphic.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/sony.jpg" alt="Sony Banners">
+            <div class="card-content">
+                <h3>Sony Photography Course</h3>
+                <p>Digital Web Display Banners Campaign.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO SHOWREEL -->
+    <h2 class="category-title">Video & Showreel</h2>
+    <div class="video-container">
+        <!-- ZAMENI "YOUR_VIDEO_ID" SA TVOJIM LINKOM SA YOUTUBE-A ILI VIMEO-A -->
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Andrija. Sva prava zadržana.</p>
+        <p>Kontakt: <a href="mailto:tvoj@email.com">tvoj@email.com</a></p>
+    </footer>
+
+</body>
+</html>
