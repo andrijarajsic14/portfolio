@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrija — Portfolio</title>
+    <title>Andrija Rajšić — Portfolio</title>
     <style>
         :root {
             --bg-color: #0f0f11;
@@ -57,10 +57,12 @@
             display: inline-block;
         }
 
+        /* FLEX / MASONRY PORAVNANJE DA NEMA PRAZNOG PROSTORA */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
+            align-items: start; /* Sređuje problem sa visinom kartica kao kod Peacolora */
         }
 
         .card {
@@ -69,8 +71,6 @@
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
         }
 
         .card:hover {
@@ -78,12 +78,11 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        /* PRIKAZ CELE SLIKE BEZ SEČENJA */
         .card img {
             width: 100%;
             height: auto;
             display: block;
-            cursor: pointer; /* Indikator da slika može da se klikne */
+            cursor: pointer;
             transition: opacity 0.2s ease;
         }
 
@@ -93,7 +92,6 @@
 
         .card-content {
             padding: 20px;
-            margin-top: auto;
             border-top: 1px solid var(--border-color);
         }
 
@@ -107,14 +105,20 @@
             font-size: 0.95rem;
         }
 
+        /* VIDEO SEKCIJA STILOVI */
+        .video-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 12px;
             background: #000;
-            border: 1px solid var(--border-color);
         }
 
         .video-container iframe {
@@ -126,7 +130,7 @@
             border: 0;
         }
 
-        /* LIGHTBOX (FULLSCREEN MODAL) STILOVI */
+        /* LIGHTBOX (FULLSCREEN PREGLED) */
         .lightbox {
             display: none;
             position: fixed;
@@ -171,6 +175,7 @@
         footer a {
             color: var(--accent-color);
             text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -178,7 +183,7 @@
 
     <!-- HEADER / O MENI -->
     <header>
-        <h1>Andrija</h1>
+        <h1>Andrija Rajšić</h1>
         <p>3D Artist & Graphic Designer | Visual Arts & Product Design</p>
     </header>
 
@@ -274,16 +279,22 @@
         </div>
     </div>
 
-    <!-- VIDEO SHOWREEL -->
-    <h2 class="category-title">Video & Showreel</h2>
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+    <!-- VIDEO PRODUCTION SEKCIJA -->
+    <h2 class="category-title">Video Production</h2>
+    <div class="video-card">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+        </div>
+        <div class="card-content">
+            <h3>Short Student Film</h3>
+            <p>A short film project showcasing cinematography, visual framing, and video editing skills.</p>
+        </div>
     </div>
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Andrija. Sva prava zadržana.</p>
-        <p>Kontakt: <a href="mailto:tvoj@email.com">tvoj@email.com</a></p>
+        <p>&copy; 2026 Andrija Rajšić. Sva prava zadržana.</p>
+        <p>Kontakt: <a href="mailto:andrijarajsic14@gmail.com">andrijarajsic14@gmail.com</a></p>
     </footer>
 
     <!-- LIGHTBOX PROZOR ZA FULLSCREEN SLIKE -->
