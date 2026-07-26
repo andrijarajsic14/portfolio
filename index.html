@@ -57,12 +57,11 @@
             display: inline-block;
         }
 
-        /* FLEX / MASONRY PORAVNANJE DA NEMA PRAZNOG PROSTORA */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
-            align-items: start; /* Sređuje problem sa visinom kartica kao kod Peacolora */
+            align-items: start;
         }
 
         .card {
@@ -105,7 +104,6 @@
             font-size: 0.95rem;
         }
 
-        /* VIDEO SEKCIJA STILOVI */
         .video-card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -130,7 +128,6 @@
             border: 0;
         }
 
-        /* LIGHTBOX (FULLSCREEN PREGLED) */
         .lightbox {
             display: none;
             position: fixed;
@@ -217,14 +214,14 @@
             </div>
         </div>
         <div class="card">
-            <img src="images/blackbull.jpg" alt="Black Bull Pub" onclick="openLightbox(this.src)">
+            <img src="images/blackbull.png" alt="Black Bull Pub" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Black Bull Pub</h3>
                 <p>Craft Beer & Pub Branding Illustration.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/vino.jpg" alt="Zlatni Grozd" onclick="openLightbox(this.src)">
+            <img src="images/vino.png" alt="Zlatni Grozd" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Zlatni Grozd</h3>
                 <p>Traditional Wine Label & Packaging Design.</p>
@@ -283,7 +280,7 @@
     <h2 class="category-title">Video Production</h2>
     <div class="video-card">
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/QqeYblzzrnM" allowfullscreen></iframe>
         </div>
         <div class="card-content">
             <h3>Short Student Film</h3>
