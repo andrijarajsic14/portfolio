@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrija — Portfolio</title>
     <style>
-        /* CSS STILOVI — Jednostavno za izmenu boja i fontova */
         :root {
             --bg-color: #0f0f11;
             --card-bg: #18181c;
             --text-color: #f1f1f5;
             --text-muted: #a0a0ab;
-            --accent-color: #e63946; /* Možeš promeniti u svoju omiljenu boju */
+            --accent-color: #e63946;
             --border-color: #2a2a32;
         }
 
@@ -60,7 +59,7 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
         }
 
@@ -70,6 +69,8 @@
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
@@ -77,15 +78,23 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
+        /* PRIKAZ CELE SLIKE BEZ SEČENJA */
         .card img {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
+            height: auto;
             display: block;
+            cursor: pointer; /* Indikator da slika može da se klikne */
+            transition: opacity 0.2s ease;
+        }
+
+        .card img:hover {
+            opacity: 0.9;
         }
 
         .card-content {
             padding: 20px;
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
         }
 
         .card-content h3 {
@@ -100,7 +109,7 @@
 
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 12px;
@@ -115,6 +124,40 @@
             width: 100%;
             height: 100%;
             border: 0;
+        }
+
+        /* LIGHTBOX (FULLSCREEN MODAL) STILOVI */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
         }
 
         footer {
@@ -143,14 +186,14 @@
     <h2 class="category-title">3D Modeling & Visualization</h2>
     <div class="grid">
         <div class="card">
-            <img src="images/f1.jpg" alt="Scuderia Ferrari F1">
+            <img src="images/f1.jpg" alt="Scuderia Ferrari F1" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Scuderia Ferrari F1</h3>
                 <p>High-Poly 3D Modeling & Hard Surface Render u Blenderu.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/rolex.jpg" alt="Rolex Day-Date">
+            <img src="images/rolex.jpg" alt="Rolex Day-Date" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Rolex Day-Date Everose</h3>
                 <p>3D Product Design & Photorealistic Visualization.</p>
@@ -162,35 +205,35 @@
     <h2 class="category-title">Vector Graphics & Branding</h2>
     <div class="grid">
         <div class="card">
-            <img src="images/tatko.png" alt="Tatko Opremović">
+            <img src="images/tatko.png" alt="Tatko Opremović" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Tatko Opremović</h3>
                 <p>Tattoo Equipment Custom Logotype.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/blackbull.jpg" alt="Black Bull Pub">
+            <img src="images/blackbull.jpg" alt="Black Bull Pub" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Black Bull Pub</h3>
                 <p>Craft Beer & Pub Branding Illustration.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/vino.jpg" alt="Zlatni Grozd">
+            <img src="images/vino.jpg" alt="Zlatni Grozd" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Zlatni Grozd</h3>
                 <p>Traditional Wine Label & Packaging Design.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/peacolor.png" alt="Peacolor">
+            <img src="images/peacolor.png" alt="Peacolor" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Peacolor</h3>
                 <p>Brand Identity & Custom Logo Design.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/laleclear.jpg" alt="LaleClear">
+            <img src="images/laleclear.jpg" alt="LaleClear" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>LaleClear</h3>
                 <p>Auto Care Product Label & Visual Identity.</p>
@@ -202,28 +245,28 @@
     <h2 class="category-title">Graphic & Print Design</h2>
     <div class="grid">
         <div class="card">
-            <img src="images/plazma.jpg" alt="Plazma Cimet">
+            <img src="images/plazma.jpg" alt="Plazma Cimet" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Plazma Cimet</h3>
                 <p>Print & Magazine Ad Campaign Mockup.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/jordan.jpg" alt="Air Jordan Retro">
+            <img src="images/jordan.jpg" alt="Air Jordan Retro" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Air Jordan "Chicago Legend"</h3>
                 <p>Halftone Retro Poster Design.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/sloukas.jpg" alt="Sloukas EuroLeague">
+            <img src="images/sloukas.jpg" alt="Sloukas EuroLeague" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Kostas Sloukas</h3>
                 <p>EuroLeague Game Day Social Media Graphic.</p>
             </div>
         </div>
         <div class="card">
-            <img src="images/sony.jpg" alt="Sony Banners">
+            <img src="images/sony.jpg" alt="Sony Banners" onclick="openLightbox(this.src)">
             <div class="card-content">
                 <h3>Sony Photography Course</h3>
                 <p>Digital Web Display Banners Campaign.</p>
@@ -234,7 +277,6 @@
     <!-- VIDEO SHOWREEL -->
     <h2 class="category-title">Video & Showreel</h2>
     <div class="video-container">
-        <!-- ZAMENI "YOUR_VIDEO_ID" SA TVOJIM LINKOM SA YOUTUBE-A ILI VIMEO-A -->
         <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
     </div>
 
@@ -243,6 +285,23 @@
         <p>&copy; 2026 Andrija. Sva prava zadržana.</p>
         <p>Kontakt: <a href="mailto:tvoj@email.com">tvoj@email.com</a></p>
     </footer>
+
+    <!-- LIGHTBOX PROZOR ZA FULLSCREEN SLIKE -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content">
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
