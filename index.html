@@ -83,22 +83,61 @@
         }
 
         .img-container {
+            position: relative;
             width: 100%;
-            height: 200px;
+            aspect-ratio: 4 / 3;
             overflow: hidden;
-            background-color: #000;
+            background-color: #0b0b0b;
             cursor: pointer;
         }
 
+        /* zamucena kopija iste slike popunjava prazan prostor oko nje */
+        .img-container::before {
+            content: "";
+            position: absolute;
+            inset: -30px;
+            background: var(--bg) center / cover no-repeat;
+            filter: blur(24px) brightness(0.7);
+        }
+
         .img-container img {
+            position: relative;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.3s ease;
         }
 
         .img-container:hover img {
-            transform: scale(1.05);
+            transform: scale(1.03);
+        }
+
+        /* oznaka da kartica otvara galeriju sa vise slika */
+        .gallery-badge {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .gallery-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        #lightbox-counter {
+            align-self: center;
+            color: #ccc;
         }
 
         .card-content {
@@ -219,6 +258,7 @@
                 <div class="card">
                     <div class="img-container" onclick="openLightbox(['f1_1.jpg', 'f1_2.jpg', 'f1_3.jpg'], 0)">
                         <img src="f1_1.jpg" alt="2026 F1 Bolid">
+                        <span class="gallery-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M17 3H5a2 2 0 0 0-2 2v12"/></svg>3 slike</span>
                     </div>
                     <div class="card-content">
                         <h3>2026 F1 Bolid</h3>
@@ -230,6 +270,7 @@
                 <div class="card">
                     <div class="img-container" onclick="openLightbox(['rolex_1.jpg', 'rolex_2.jpg', 'rolex_3.jpg'], 0)">
                         <img src="rolex_1.jpg" alt="Rolex Sat">
+                        <span class="gallery-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M17 3H5a2 2 0 0 0-2 2v12"/></svg>3 slike</span>
                     </div>
                     <div class="card-content">
                         <h3>Rolex Sat</h3>
@@ -241,6 +282,7 @@
                 <div class="card">
                     <div class="img-container" onclick="openLightbox(['controller_1.jpg', 'controller_2.jpg', 'controller_3.jpg'], 0)">
                         <img src="controller_1.jpg" alt="DualSense PS5 Kontroler">
+                        <span class="gallery-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M17 3H5a2 2 0 0 0-2 2v12"/></svg>3 slike</span>
                     </div>
                     <div class="card-content">
                         <h3>DualSense PS5 Kontroler</h3>
@@ -411,8 +453,9 @@
     <div id="lightbox">
         <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
         <img id="lightbox-img" src="" alt="Uvećana slika">
-        <div class="lightbox-controls">
+        <div class="lightbox-controls" id="lightbox-controls">
             <button class="lightbox-btn" onclick="changeImage(-1)">&#10094; Prethodna</button>
+            <span id="lightbox-counter"></span>
             <button class="lightbox-btn" onclick="changeImage(1)">Sledeća &#10095;</button>
         </div>
     </div>
@@ -428,8 +471,14 @@
         function openLightbox(images, index) {
             currentImages = images;
             currentIndex = index;
-            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+            document.getElementById('lightbox-controls').style.display = images.length > 1 ? 'flex' : 'none';
+            updateLightbox();
             document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function updateLightbox() {
+            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+            document.getElementById('lightbox-counter').textContent = (currentIndex + 1) + ' / ' + currentImages.length;
         }
 
         function closeLightbox() {
@@ -443,8 +492,14 @@
             } else if (currentIndex >= currentImages.length) {
                 currentIndex = 0;
             }
-            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+            updateLightbox();
         }
+
+        // pozadina za blur: svaka sličica koristi sopstvenu sliku
+        document.querySelectorAll('.img-container').forEach(function (box) {
+            var img = box.querySelector('img');
+            box.style.setProperty('--bg', 'url("' + img.src + '")');
+        });
 
         document.getElementById('lightbox').addEventListener('click', function(e) {
             if (e.target.id === 'lightbox') {
