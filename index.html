@@ -3,72 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrija Rajšić — Portfolio</title>
+    <title>Andrija Rajšić - Portfolio</title>
     <style>
         :root {
-            --bg-color: #0f0f11;
-            --card-bg: #18181c;
-            --text-color: #f1f1f5;
-            --text-muted: #a0a0ab;
-            --accent-color: #e63946;
-            --border-color: #2a2a32;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #e50914;
+            --border-color: #333;
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         header {
             text-align: center;
-            padding: 60px 20px 40px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+            border-bottom: 2px solid var(--border-color);
         }
 
         header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            margin: 0;
+            font-size: 2.5rem;
+            color: #fff;
         }
 
         header p {
-            color: var(--text-muted);
+            color: #aaa;
             font-size: 1.2rem;
-            max-width: 600px;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        .category-title {
-            font-size: 1.8rem;
-            margin: 50px 0 25px;
-            padding-bottom: 10px;
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
             border-bottom: 2px solid var(--accent-color);
-            display: inline-block;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: #fff;
         }
 
-        /* UNIFORMNI GRID ZA JEDNAK IZGLED KARTICA */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
         .card {
             background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
+            border: 1px solid var(--border-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -79,60 +80,55 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        /* FIKSIRAN OKVIR ZA SLIKE DA SVE KARTICE BUDU RAVNE */
         .img-container {
             width: 100%;
-            height: 280px;
-            background-color: #121215;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 200px;
             overflow: hidden;
-            position: relative;
+            background-color: #000;
+            cursor: pointer;
         }
 
         .img-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* Slike se ne seku, a kontejner ostaje isti! */
-            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .card:hover .img-container img {
-            transform: scale(1.03);
+        .img-container:hover img {
+            transform: scale(1.05);
         }
 
         .card-content {
             padding: 20px;
-            border-top: 1px solid var(--border-color);
-            margin-top: auto; /* Dusi tekst na dno ako ima prostora */
-            background-color: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 1.3rem;
         }
 
         .card-content p {
-            color: var(--text-muted);
+            color: #bbb;
             font-size: 0.95rem;
+            margin: 0;
+            flex-grow: 1;
         }
 
-        .video-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
+        /* Video sekcija */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 odnost stranica */
             height: 0;
-            overflow: hidden;
             background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
         .video-container iframe {
@@ -144,7 +140,8 @@
             border: 0;
         }
 
-        .lightbox {
+        /* Lightbox modal za slike */
+        #lightbox {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -152,201 +149,243 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.92);
+            background: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            flex-direction: column;
         }
 
-        .lightbox-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.8);
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 4px;
         }
 
-        .lightbox-close {
+        .lightbox-controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .lightbox-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lightbox-btn:hover {
+            background: #ff1e2a;
+        }
+
+        .close-lightbox {
             position: absolute;
             top: 20px;
             right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
+            color: white;
+            font-size: 2.5rem;
             cursor: pointer;
-            user-select: none;
         }
 
         footer {
             text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
+            padding: 30px;
+            background-color: #0a0a0a;
+            color: #777;
             border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-        }
-
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER / O MENI -->
     <header>
         <h1>Andrija Rajšić</h1>
-        <p>Junior 3D Artist & Graphic Designer | Junior Video Editor</p>
+        <p>Junior 3D Artist, Graphic Designer & Video Editor</p>
     </header>
 
-    <!-- 3D MODELING SEKCIJA -->
-    <h2 class="category-title">3D Modeling & Visualization</h2>
-    <div class="grid">
-        <div class="card">
-            <div class="img-container">
-                <img src="images/f1.jpg" alt="Scuderia Ferrari F1" onclick="openLightbox(this.src)">
+    <div class="container">
+
+        <!-- 3D MODELING & VISUALIZATION -->
+        <section>
+            <h2>3D Modeling & Visualization</h2>
+            <div class="grid">
+                
+                <!-- F1 Bolid -->
+                <div class="card">
+                    <div class="img-container" onclick="openLightbox(['f1_1.jpg', 'f1_2.jpg', 'f1_3.jpg'], 0)">
+                        <img src="f1_1.jpg" alt="2026 F1 Bolid">
+                    </div>
+                    <div class="card-content">
+                        <h3>2026 F1 Bolid</h3>
+                        <p>Hard surface 3D model i render 2026-spec bolida Formule 1 (studentski/kapston projekat u Blenderu).</p>
+                    </div>
+                </div>
+
+                <!-- Rolex Sat -->
+                <div class="card">
+                    <div class="img-container" onclick="openLightbox(['rolex_1.jpg', 'rolex_2.jpg', 'rolex_3.jpg'], 0)">
+                        <img src="rolex_1.jpg" alt="Rolex Sat">
+                    </div>
+                    <div class="card-content">
+                        <h3>Rolex Sat</h3>
+                        <p>Detaljno hard-surface modelovanje sata, UV unwrap, napredni materijali i fotorealističan produkt render.</p>
+                    </div>
+                </div>
+
+                <!-- DualSense PS5 Kontroler -->
+                <div class="card">
+                    <div class="img-container" onclick="openLightbox(['controller_1.jpg', 'controller_2.jpg', 'controller_3.jpg'], 0)">
+                        <img src="controller_1.jpg" alt="DualSense PS5 Kontroler">
+                    </div>
+                    <div class="card-content">
+                        <h3>DualSense PS5 Kontroler</h3>
+                        <p>Precizno hard-surface modelovanje gejmpling kontrolera sa teksturama i studijskim osvetljenjem.</p>
+                    </div>
+                </div>
+
             </div>
-            <div class="card-content">
-                <h3>Ferrari F1 car</h3>
-                <p>High-Poly 3D Modeling & Hard Surface Render.</p>
+        </section>
+
+        <!-- 3D ANIMATION -->
+        <section>
+            <h2>3D Animation</h2>
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/lb2YUB6_WcQ" title="Formula 1 3D Animation" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>Formula 1 - 3D Motion Animation</h3>
+                    <p>Autorska 3D animacija bolida Formule 1. Kreirana i izrenderovana u Blenderu sa fokusom na kretanje i dinamične uglove kamere.</p>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="img-container">
-                <img src="images/rolex.jpg" alt="Rolex Day-Date" onclick="openLightbox(this.src)">
+        </section>
+
+        <!-- VECTOR GRAPHICS & BRANDING -->
+        <section>
+            <h2>Vector Graphics & Branding</h2>
+            <div class="grid">
+                
+                <!-- Tetra Instalacije Logo -->
+                <div class="card">
+                    <div class="img-container" onclick="openLightbox(['tetra_logo.png'], 0)">
+                        <img src="tetra_logo.png" alt="Tetra Instalacije Logo">
+                    </div>
+                    <div class="card-content">
+                        <h3>Tetra Instalacije</h3>
+                        <p>Vizuelni identitet i dizajn logoa za kompaniju koja se bavi vodovodom i instalacijama grejanja.</p>
+                    </div>
+                </div>
+
+                <!-- Postojeći vektorski rad -->
+                <div class="card">
+                    <div class="img-container" onclick="openLightbox(['crni_bikovina.png'], 0)">
+                        <img src="crni_bikovina.png" alt="Blackbull Branding">
+                    </div>
+                    <div class="card-content">
+                        <h3>Blackbull Branding</h3>
+                        <p>Izrada vektorskog logotipa i vizuelnog identiteta sa naglaskom na čistu geometriju i skalabilnost.</p>
+                    </div>
+                </div>
+
             </div>
-            <div class="card-content">
-                <h3>Rolex Day-Date</h3>
-                <p>3D Product Design & Photorealistic Visualization.</p>
+        </section>
+
+        <!-- RASTER & POSTER DESIGN -->
+        <section>
+            <h2>Raster & Poster Design</h2>
+            <div class="grid">
+                
+                <!-- Vino -->
+                <div class="card">
+                    <div class="img-container" onclick="openLightbox(['vino.png'], 0)">
+                        <img src="vino.png" alt="Wine Poster Design">
+                    </div>
+                    <div class="card-content">
+                        <h3>Vino Poster</h3>
+                        <p>Komercijalni plakat i manipulacija fotografije u Photoshopu za brend pića.</p>
+                    </div>
+                </div>
+
+                <!-- Air Jordan -->
+                <div class="card">
+                    <div class="img-container" onclick="openLightbox(['air jordan.jpg'], 0)">
+                        <img src="air jordan.jpg" alt="Air Jordan Poster">
+                    </div>
+                    <div class="card-content">
+                        <h3>Air Jordan Concept</h3>
+                        <p>Upečatljiv plakat sa kastomizovanom tipografijom i kompozicijom u Photoshopu.</p>
+                    </div>
+                </div>
+
             </div>
+        </section>
+
+        <!-- VIDEO PRODUCTION -->
+        <section>
+            <h2>Video Production</h2>
+            <div class="card" style="max-width: 800px; margin: 0 auto;">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Production Showreel" allowfullscreen></iframe>
+                </div>
+                <div class="card-content">
+                    <h3>Video Editing & Motion Graphics Showreel</h3>
+                    <p>Montaža, kolor korekcija i vizuelni efekti rađeni u Adobe Premiere Pro i After Effects programima.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Lightbox Modal Struktura -->
+    <div id="lightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Uvećana slika">
+        <div class="lightbox-controls">
+            <button class="lightbox-btn" onclick="changeImage(-1)">&#10094; Prethodna</button>
+            <button class="lightbox-btn" onclick="changeImage(1)">Sledeća &#10095;</button>
         </div>
     </div>
 
-    <!-- VEKTORI I BRENDING -->
-    <h2 class="category-title">Vector Graphics & Branding</h2>
-    <div class="grid">
-        <div class="card">
-            <div class="img-container">
-                <img src="images/tatko.png" alt="Tatko Opremović" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>Tatko Opremović</h3>
-                <p>Tattoo Equipment Custom Logotype.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-container">
-                <img src="images/blackbull.png" alt="Black Bull Pub" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>Black Bull Pub</h3>
-                <p>Beer Pub logo.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-container">
-                <img src="images/vino.png" alt="Zlatni Grozd" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>Zlatni Grozd</h3>
-                <p>Traditional Wine Label & Packaging Design.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-container">
-                <img src="images/peacolor.png" alt="Peacolor" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>Peacolor</h3>
-                <p>Painter Firm Brand Identity & Custom Logo Design.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-container">
-                <img src="images/laleclear.jpg" alt="LaleClear" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>LaleClear</h3>
-                <p>Auto Care Product Label & Visual Identity.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- GRAFIČKI DIZAJN -->
-    <h2 class="category-title">Raster Graphics & Posters</h2>
-    <div class="grid">
-        <div class="card">
-            <div class="img-container">
-                <img src="images/plazma.jpg" alt="Plazma Cimet" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>Plazma Cimet</h3>
-                <p>Print & Magazine Ad Campaign.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-container">
-                <img src="images/jordan.jpg" alt="Air Jordan Retro" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>Air Jordan "Chicago Legend"</h3>
-                <p>Halftone Retro Poster Design.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-container">
-                <img src="images/sloukas.jpg" alt="Sloukas EuroLeague" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>Kostas Sloukas</h3>
-                <p>EuroLeague Game Day Social Media Graphic.</p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="img-container">
-                <img src="images/sony.jpg" alt="Sony Banners" onclick="openLightbox(this.src)">
-            </div>
-            <div class="card-content">
-                <h3>Sony Photography Course</h3>
-                <p>Digital Web Display Banners Campaign.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- VIDEO PRODUCTION SEKCIJA -->
-    <h2 class="category-title">Video Production</h2>
-    <div class="video-card">
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/QqeYblzzrnM" allowfullscreen></iframe>
-        </div>
-        <div class="card-content">
-            <h3>Short Student Film</h3>
-            <p>A short film project showcasing cinematography, visual framing, and video editing skills.</p>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Andrija Rajšić. Sva prava zadržana.</p>
-        <p>Kontakt: <a href="mailto:andrijarajsic14@gmail.com">andrijarajsic14@gmail.com</a></p>
     </footer>
 
-    <!-- LIGHTBOX PROZOR ZA FULLSCREEN SLIKE -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" class="lightbox-content">
-    </div>
-
     <script>
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
+        let currentImages = [];
+        let currentIndex = 0;
+
+        function openLightbox(images, index) {
+            currentImages = images;
+            currentIndex = index;
+            document.getElementById('lightbox-img').src = currentImages[currentIndex];
             document.getElementById('lightbox').style.display = 'flex';
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
         }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = currentImages.length - 1;
+            } else if (currentIndex >= currentImages.length) {
+                currentIndex = 0;
+            }
+            document.getElementById('lightbox-img').src = currentImages[currentIndex];
+        }
+
+        // Zatvaranje klikom van slike
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
     </script>
 
 </body>
