@@ -119,11 +119,10 @@
             flex-grow: 1;
         }
 
-        /* Video sekcija */
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 odnost stranica */
+            padding-bottom: 56.25%;
             height: 0;
             background: #000;
             border-radius: 8px;
@@ -140,7 +139,6 @@
             border: 0;
         }
 
-        /* Lightbox modal za slike */
         #lightbox {
             display: none;
             position: fixed;
@@ -222,7 +220,7 @@
                     </div>
                     <div class="card-content">
                         <h3>2026 F1 Bolid</h3>
-                        <p>Hard surface 3D model i render 2026-spec bolida Formule 1 (studentski/kapston projekat u Blenderu).</p>
+                        <p>Hard surface 3D model i render 2026-spec bolida Formule 1.</p>
                     </div>
                 </div>
 
@@ -233,7 +231,7 @@
                     </div>
                     <div class="card-content">
                         <h3>Rolex Sat</h3>
-                        <p>Detaljno hard-surface modelovanje sata, UV unwrap, napredni materijali i fotorealističan produkt render.</p>
+                        <p>Detaljno hard-surface modelovanje sata, UV unwrap i fotorealističan produkt render.</p>
                     </div>
                 </div>
 
@@ -244,7 +242,7 @@
                     </div>
                     <div class="card-content">
                         <h3>DualSense PS5 Kontroler</h3>
-                        <p>Precizno hard-surface modelovanje gejmpling kontrolera sa teksturama i studijskim osvetljenjem.</p>
+                        <p>Precizno hard-surface modelovanje gejming kontrolera sa teksturama i osvetljenjem.</p>
                     </div>
                 </div>
 
@@ -260,7 +258,7 @@
                 </div>
                 <div class="card-content">
                     <h3>Formula 1 - 3D Motion Animation</h3>
-                    <p>Autorska 3D animacija bolida Formule 1. Kreirana i izrenderovana u Blenderu sa fokusom na kretanje i dinamične uglove kamere.</p>
+                    <p>Autorska 3D animacija bolida Formule 1 kreirana u Blenderu.</p>
                 </div>
             </div>
         </section>
@@ -272,23 +270,23 @@
                 
                 <!-- Tetra Instalacije Logo -->
                 <div class="card">
-                    <div class="img-container" onclick="openLightbox(['tetra_logo.png'], 0)">
-                        <img src="tetra_logo.png" alt="Tetra Instalacije Logo">
+                    <div class="img-container" onclick="openLightbox(['tetra_instalacije.png'], 0)">
+                        <img src="tetra_instalacije.png" alt="Tetra Instalacije Logo">
                     </div>
                     <div class="card-content">
                         <h3>Tetra Instalacije</h3>
-                        <p>Vizuelni identitet i dizajn logoa za kompaniju koja se bavi vodovodom i instalacijama grejanja.</p>
+                        <p>Vizuelni identitet i dizajn logoa za kompaniju za vodovod i grejanje.</p>
                     </div>
                 </div>
 
-                <!-- Postojeći vektorski rad -->
+                <!-- Blackbull -->
                 <div class="card">
-                    <div class="img-container" onclick="openLightbox(['crni_bikovina.png'], 0)">
-                        <img src="crni_bikovina.png" alt="Blackbull Branding">
+                    <div class="img-container" onclick="openLightbox(['blackbull.png'], 0)">
+                        <img src="blackbull.png" alt="Blackbull Branding">
                     </div>
                     <div class="card-content">
                         <h3>Blackbull Branding</h3>
-                        <p>Izrada vektorskog logotipa i vizuelnog identiteta sa naglaskom na čistu geometriju i skalabilnost.</p>
+                        <p>Izrada vektorskog logotipa i vizuelnog identiteta.</p>
                     </div>
                 </div>
 
@@ -307,7 +305,7 @@
                     </div>
                     <div class="card-content">
                         <h3>Vino Poster</h3>
-                        <p>Komercijalni plakat i manipulacija fotografije u Photoshopu za brend pića.</p>
+                        <p>Komercijalni plakat i manipulacija fotografije u Photoshopu.</p>
                     </div>
                 </div>
 
@@ -318,7 +316,7 @@
                     </div>
                     <div class="card-content">
                         <h3>Air Jordan Concept</h3>
-                        <p>Upečatljiv plakat sa kastomizovanom tipografijom i kompozicijom u Photoshopu.</p>
+                        <p>Upečatljiv plakat sa kastomizovanom tipografijom i kompozicijom.</p>
                     </div>
                 </div>
 
@@ -330,11 +328,11 @@
             <h2>Video Production</h2>
             <div class="card" style="max-width: 800px; margin: 0 auto;">
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video Production Showreel" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/lb2YUB6_WcQ" title="Video Production Showreel" allowfullscreen></iframe>
                 </div>
                 <div class="card-content">
                     <h3>Video Editing & Motion Graphics Showreel</h3>
-                    <p>Montaža, kolor korekcija i vizuelni efekti rađeni u Adobe Premiere Pro i After Effects programima.</p>
+                    <p>Montaža, kolor korekcija i vizuelni efekti.</p>
                 </div>
             </div>
         </section>
@@ -380,7 +378,6 @@
             document.getElementById('lightbox-img').src = currentImages[currentIndex];
         }
 
-        // Zatvaranje klikom van slike
         document.getElementById('lightbox').addEventListener('click', function(e) {
             if (e.target.id === 'lightbox') {
                 closeLightbox();
